@@ -105,3 +105,39 @@ Ensure you have the following installed:
 - MongoDB
 
 ### Installation
+Clone the repository:
+   ```bash
+   git clone  https://github.com/arthurBlinov/AppForBlogers-Backend.git 
+   ```
+Install dependencies:
+   ```bash
+   npm install
+   ```
+### Configuration
+1. Create a `.env` file in the root directory.
+2. Add the following environment variables:
+   ```env
+   MONGO_URI=<your-mongodb-uri>
+   JWT_SECRET=<your-jwt-secret>
+   SENDGRID_API_KEY=<your-sendgrid-api-key>
+   CLOUDINARY_CLOUD_NAME=<your-name>
+   CLOUDINARY_API_KEY=<your-cloudinary-api-key>
+   CLOUDINARY_SECRET_KEY=<your-cloudinary-secret-key>
+   ```
+
+### Running the Server
+- Start the server in development mode:
+  ```bash
+  npm run dev
+  ```
+- The server will run at `http://localhost:5000`.
+
+---
+
+## Deployment
+
+### Steps
+1. Ensure the `.env` file is configured for the production environment.
+2. Deploy to your chosen hosting service (e.g., AWS, Heroku, or Vercel).
+
+---
