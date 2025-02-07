@@ -45,7 +45,6 @@ const updateCategoryCtrl = expressAsyncHandler(async(req,res) => {
     const {id} = req.params;
     try {
         const category = await Category.findByIdAndUpdate(
-           
             id, 
             {
                 title: req?.body?.title

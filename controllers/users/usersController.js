@@ -154,56 +154,14 @@ const userProfileCtrl = expressAsyncHandler(async (req,res) => {
     validateMongodbId(id);
 
     const loginUserId = req?.user?._id;
-      // console.log(id.toString(), loginUserId.toString());
     try {
         const myProfile = await User.findById(id)
                 .populate('posts')
                 .populate('viewedBy');
-
-        //let arrayOfViews = myProfile?.viewedBy;
-        //console.log(arrayOfViews[0].toString());
-        let viewed;
                 if(id.toString() != loginUserId.toString()){
                     User.findByIdAndUpdate(myProfile?._id, {
                                 $push: {viewedBy: loginUserId}
                             })
-                            console.log('hello');
-                //    for(i = 0; i < arrayOfViews.length;i++){
-                //        if(arrayOfViews[i].toString() == loginUserId.toString())
-                //             viewed = true;
-                //    }
-                // }
-                // console.log(viewed);
-                // if(viewed){
-                //     User.findByIdAndUpdate(myProfile?._id, {
-                //         $pull: {viewedBy: loginUserId}
-                //     })
-                // }else{
-                //     User.findByIdAndUpdate(myProfile?._id, {
-                //         $push: {viewedBy: loginUserId}
-                //     })
-                //      if(arrayOfViews?.length >= 1)
-                //           console.log('hello');
-                // }
-         // if(id != loginUserId){
-                //     myProfile?.viewedBy.forEach(element => {
-                //         if(loginUserId == element.toString()){
-                //             User.findOneAndUpdate(profileEmail, {
-                //                 $pull: {viewedBy: loginUserId},
-                                
-                //             })
-                            
-                //         }else {
-                           
-                //             User.findOneAndUpdate(profileEmail, {
-                //                 $push: {viewedBy: loginUserId},
-                                
-                //             })
-                            
-                //         }
-                        
-                //     });
-                    
                      }
         res.json(myProfile);
     } catch (error) {
@@ -234,8 +192,6 @@ const updateUserPasswordCtrl = expressAsyncHandler(async (req, res) => {
     const {_id} = req.user;
     const {oldPassword, newPassword} = req.body;
     validateMongodbId(_id);
-    
-    // console.log('hello');
     //Find the user by Id
     const user = await User.findById(_id);
     if(user.isPasswordMatched(oldPassword)){

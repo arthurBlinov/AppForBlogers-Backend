@@ -17,7 +17,6 @@ const multerFilter = (req, file, cb) => {
 }
 }
 const photoUpload = multer({
-    
         storage: multerStorage,
         fileFilter: multerFilter,
         limits: {fileSize: 5000000}
@@ -38,7 +37,6 @@ const profilePhotoResize = async (req, res, next) => {
 //Post image resizing 
 const postImageResize = async (req, res, next) => {
     //check if there is no file 
-   
     if(!req.file) return next();
     req.file.filename = `user-${Date.now()}-${req.file.originalname}`;
     await sharp(req.file.buffer).resize(500, 500).toFormat('jpeg').jpeg({

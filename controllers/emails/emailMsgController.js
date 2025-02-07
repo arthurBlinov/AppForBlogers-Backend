@@ -5,11 +5,8 @@ const EmailMsg = require('../../model/emailMessaging/EmailMessaging');
 
 
 const sendEmailMsgCtrl = expressAsyncHandler(async(req,res) => {
-    
     const {to, subject, message} = req?.body;
     const emailMessage = subject + ' ' + message;
-    
-    //prevent bad words
     const filter = new Filter();
     const isProfane = filter.isProfane(emailMessage);
     if(isProfane) throw new Error ('Email sent failed, because it contains bad words');

@@ -22,7 +22,6 @@ const {photoUpload,
         profilePhotoResize} = require('../../midlleware/uploads/photoUpload');
 
 const userRoutes = express.Router();
-
 userRoutes.put('/following', authMiddleware, followingUserCtrl);
 userRoutes.put('/unfollowing', authMiddleware, unfollowUserCtrl);
 userRoutes.put('/block-user/:id', authMiddleware, blockUserCtrl);

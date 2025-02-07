@@ -8,10 +8,7 @@ const {createPostCtrl,
     toggleAddDislikeToPostCtrl} = require('../../controllers/posts/postController');
 const authMiddleware = require('../../midlleware/auth/authMiddleware');
 const {photoUpload, postImageResize}  = require('../../midlleware/uploads/photoUpload');
-
-
 const postRoute = express.Router();
-// console.log(photoUpload.single('image'));
 postRoute.put('/likes', authMiddleware, toggleAddLikeToPostCtrl)
 postRoute.put('/dislikes', authMiddleware, toggleAddDislikeToPostCtrl);
 postRoute.post('/', authMiddleware, photoUpload.single('image'), postImageResize, createPostCtrl);

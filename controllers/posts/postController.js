@@ -78,7 +78,6 @@ const fetchPostCtrl = expressAsyncHandler(async (req,res) => {
         .populate('disLikes')
         .populate('likes')
         .populate('comments');;
-
         //update number of views
         await Post.findByIdAndUpdate(id, {
             $inc:{numViews: 1}
@@ -101,6 +100,7 @@ const updatePostCtrl = expressAsyncHandler(async(req,res) => {
             new: true,
         }) 
         res.json(post);
+        return ;
     } catch (error) {
         res.json(error);
     }
@@ -112,6 +112,7 @@ const deletePostCtrl = expressAsyncHandler(async(req, res) => {
     try {
         const post = await Post.findByIdAndDelete(id);
         res.json(post);
+        return ;
     } catch (error) {
         res.json(error);
     }

@@ -28,6 +28,7 @@ const fetchAllComments = expressAsyncHandler(async (req,res) => {
     try {
         const comments = await Comment.find({}).sort('-created');
         res.json(comments);
+        return ;
     } catch (error) {
         res.json(error);
     }
@@ -38,6 +39,7 @@ const fetchSingleCommentCtrl = expressAsyncHandler(async(req,res) => {
     try {
         const comment = await Comment.findById(id);
         res.json(comment);
+        return ;
     } catch (error) {
         res.json(error);
     }
@@ -54,7 +56,8 @@ const updateCommentCtrl = expressAsyncHandler(async (req,res) =>{
             new: true,
             runValidators: true
         })
-        res.json(update)
+        res.json(update);
+        return ;
     } catch (error) {
         res.json(error);
     }
