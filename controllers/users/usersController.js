@@ -77,8 +77,6 @@ const loginUserCtrl = expressAsyncHandler(async (req, res) => {
 })
 //Users
 const fetchUsersCtrl= expressAsyncHandler(async(req,res) => {
-        // const {_id} = req?.user?._id;
-        // validateMongodbId(_id);
         try {
             const usersList = await User.find({}).populate('posts');
             res.json(usersList);

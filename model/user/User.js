@@ -109,7 +109,6 @@ userSchema.virtual('accountType').get(function() {
 //Hash Password
 userSchema.pre('save', async function(next){
     if(!this.isModified('password')){
-        
         next();
     }
     
